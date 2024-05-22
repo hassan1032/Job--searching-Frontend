@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from "react";
-import  "./App.css";
+import "./App.css";
 import { Context } from "./main";
 import Login from "./component/Auth/Login";
 import Register from "./component/Auth/Register";
@@ -13,12 +13,39 @@ import Jobs from "./component/job/jobs";
 import MyApplication from "./component/Application/MyApplication";
 import Application from "./component/Application/Application";
 import NotFound from "./component/NotFound/NotFound";
-import JobDetail from './component/job/jobDetails'
+import JobDetail from "./component/job/jobDetails";
+// import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 import { Toaster } from "react-hot-toast";
 
 const App = () => {
+  // const navigate = useNavigate();
+
+  const { isAuthorized, setIsAuthorized, setUser } = useContext(Context);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:5000/api/v1/user/getuser",
+          {
+            withCredentials: true,
+          }
+        );
+        setUser(res.data.user);
+        setIsAuthorized(true);
+      } catch (error) {
+        setIsAuthorized(false);
+      }
+    };
+    fetchUser();
+  }, [isAuthorized]);
+  // if(isAuthorized){
+  //   return <navigate to={"/"}/>
+
+  // }
+
   return (
     <>
       <Router>
@@ -36,7 +63,7 @@ const App = () => {
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
-        <Toaster/>
+        <Toaster />
       </Router>
     </>
   );
