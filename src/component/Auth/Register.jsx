@@ -11,17 +11,18 @@ import { Context } from "../../main";
 
 const Register = () => {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [phone, setPhone] = useState("");
-  const [role, setRole] = useState("");
   const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
+  const [role, setRole] = useState("");
 
   const { isAuthorized, setIsAuthorized, user, setUser } = useContext(Context);
+
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:4000/api/v1/user/register",
+        "http://localhost:5000/api/v1/user/register",
         { name, phone, email, role, password },
         {
           headers: {
@@ -38,6 +39,7 @@ const Register = () => {
       setRole("");
       setIsAuthorized(true);
     } catch (error) {
+      
       toast.error(error.response.data.message);
     }
   };
@@ -46,7 +48,6 @@ const Register = () => {
     return <Navigate to={'/'}/>
   }
 
-  
 
   return (
     <>
@@ -73,7 +74,7 @@ const Register = () => {
               <div>
                 <input
                   type="text"
-                  placeholder="Zeeshan"
+                  placeholder="Name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                 />
@@ -85,7 +86,7 @@ const Register = () => {
               <div>
                 <input
                   type="email"
-                  placeholder="zk@gmail.com"
+                  placeholder="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -129,6 +130,5 @@ const Register = () => {
     </>
   );
 };
-
 
 export default Register;
