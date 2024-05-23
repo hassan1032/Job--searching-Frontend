@@ -6,7 +6,8 @@
   padding: 0;
   box-sizing: border-box;
   overflow-x: hidden;
-  font-family: "Roboto", sans-serif;
+  font-family: cursive;
+  font-weight: 500;
 }
 ::-webkit-scrollbar {
   display: none;
