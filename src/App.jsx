@@ -14,14 +14,11 @@ import MyApplication from "./component/Application/MyApplication";
 import Application from "./component/Application/Application";
 import NotFound from "./component/NotFound/NotFound";
 import JobDetail from "./component/job/jobDetails";
-// import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 import { Toaster } from "react-hot-toast";
 
 const App = () => {
-  // const navigate = useNavigate();
-
   const { isAuthorized, setIsAuthorized, setUser } = useContext(Context);
 
   useEffect(() => {
@@ -41,30 +38,24 @@ const App = () => {
     };
     fetchUser();
   }, [isAuthorized]);
-  // if(isAuthorized){
-  //   return <navigate to={"/"}/>
-
-  // }
 
   return (
     <>
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/jobs" element={<Jobs />} />
-          <Route path="/jobs/post" element={<PostJobs />} />
-          <Route path="/jobs/me" element={<Myjobs />} />
-          <Route path="/jobs/:id" element={<JobDetail />} />
-          <Route path="/Application/:id" element={<Application />} />
-          <Route path="/Application/me" element={<MyApplication />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <Footer />
-        <Toaster />
-      </Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/jobs" element={<Jobs />} />
+        <Route path="/jobs/post" element={<PostJobs />} />
+        <Route path="/jobs/me" element={<Myjobs />} />
+        <Route path="/jobs/:id" element={<JobDetail />} />
+        <Route path="/Application/:id" element={<Application />} />
+        <Route path="/Application/me" element={<MyApplication />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+      <Footer />
+      <Toaster />
     </>
   );
 };
