@@ -13,10 +13,11 @@ const JobDetails = () => {
   useEffect(() => {
     axios
       .get(`http://localhost:5000/api/v1/job/${id}`, {
+        
         withCredentials: true,
       })
       .then((res) => {
-        setJob(res.data.job);
+        setJob(res.data.jobs);
       })
       .catch((error) => {
         navigateTo("/notfound");
@@ -33,40 +34,40 @@ const JobDetails = () => {
         <h3>Job Details</h3>
         <div className="banner">
           <p>
-            Title: <span> {job.title}</span>
+            Title: <span> {job?.title}</span>
           </p>
           <p>
-            Category: <span>{job.category}</span>
+            Category: <span>{job?.category}</span>
           </p>
           <p>
-            Country: <span>{job.country}</span>
+            Country: <span>{job?.country}</span>
           </p>
           <p>
-            City: <span>{job.city}</span>
+            City: <span>{job?.city}</span>
           </p>
           <p>
-            Location: <span>{job.location}</span>
+            Location: <span>{job?.location}</span>
           </p>
           <p>
-            Description: <span>{job.description}</span>
+            Description: <span>{job?.description}</span>
           </p>
           <p>
-            Job Posted On: <span>{job.jobPostedOn}</span>
+            Job Posted On: <span>{job?.jobPostedOn}</span>
           </p>
           <p>
             Salary:{" "}
-            {job.fixedSalary ? (
-              <span>{job.fixedSalary}</span>
+            {job?.fixedSalary ? (
+              <span>{job?.fixedSalary}</span>
             ) : (
               <span>
-                {job.salaryFrom} - {job.salaryTo}
+                {job?.salaryFrom} - {job?.salaryTo}
               </span>
             )}
           </p>
           {user && user.role === "Employer" ? (
             <></>
           ) : (
-            <Link to={`/application/${job._id}`}>Apply Now</Link>
+            <Link to={`/application/${job?._id}`}>Apply Now</Link>
           )}
         </div>
       </div>
