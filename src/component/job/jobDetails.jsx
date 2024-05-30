@@ -10,10 +10,30 @@ const JobDetails = () => {
 
   const { isAuthorized, user } = useContext(Context);
 
+  function formatDateWithAMPM(dateString) {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.getMonth() + 1; // Adding 1 because getMonth() returns zero-based month (0 for January)
+    const year = date.getFullYear();
+    let hours = date.getHours();
+    const minutes = date.getMinutes();
+
+    const amPM = hours >= 12 ? "PM" : "AM";
+
+    hours = hours % 12;
+    hours = hours ? hours : 12; // 0 should be treated as 12
+
+    const formattedDate = `${day < 10 ? "0" : ""}${day}-${
+      month < 10 ? "0" : ""
+    }${month}-${year} ${hours < 10 ? "0" : ""}${hours}:${
+      minutes < 10 ? "0" : ""
+    }${minutes}: ${amPM}`;
+    return formattedDate;
+  }
+
   useEffect(() => {
     axios
       .get(`http://localhost:5000/api/v1/job/${id}`, {
-        
         withCredentials: true,
       })
       .then((res) => {
@@ -52,7 +72,10 @@ const JobDetails = () => {
             Description: <span>{job?.description}</span>
           </p>
           <p>
-            Job Posted On: <span>{job?.jobPostedOn}</span>
+            Comapany: <span>{job?.company}</span>
+          </p>
+          <p>
+            Job Posted On: <span>{formatDateWithAMPM(job?.jobPostedOn)}</span>
           </p>
           <p>
             Salary:{" "}
@@ -60,7 +83,7 @@ const JobDetails = () => {
               <span>{job?.fixedSalary}</span>
             ) : (
               <span>
-                {job?.salaryFrom} - {job?.salaryTo}
+                {job?.salaryTo} - {job?.salaryFrom}
               </span>
             )}
           </p>
