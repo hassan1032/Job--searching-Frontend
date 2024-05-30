@@ -15,7 +15,6 @@ const Application = () => {
 
   const navigateTo = useNavigate();
 
-  // Function to handle file input changes
   const handleFileChange = (event) => {
     const resume = event.target.files[0];
     setResume(resume);
@@ -35,7 +34,7 @@ const Application = () => {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:4000/api/v1/application/post",
+        "http://localhost:5000/api/v1/application/post",
         formData,
         {
           withCredentials: true,
@@ -103,7 +102,7 @@ const Application = () => {
             </label>
             <input
               type="file"
-              accept=".pdf, .jpg, .png"
+              accept=".pdf, .jpg, .png,"
               onChange={handleFileChange}
               style={{ width: "100%" }}
             />
