@@ -159,6 +159,22 @@ const JobSeekerCard = ({ element, deleteApplication, openModal }) => {
 };
 
 const EmployerCard = ({ element, openModal }) => {
+  const downloadImage = (ele) => {
+    const imageUrl = ele?.resume?.url;
+    fetch(imageUrl)
+      .then(response => response.blob())
+      .then(blob => {
+        const url = window.URL.createObjectURL(new Blob([blob]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'downloaded_image.png');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      })
+      .catch(error => console.error('Error downloading image:', error));
+
+  };
   return (
     <>
       <div className="job_seeker_card">
@@ -180,10 +196,17 @@ const EmployerCard = ({ element, openModal }) => {
           </p>
         </div>
         <div className="resume">
+
+          {/* <button onClick={()=>downloadImage(element)}>download</button> */}
+
+          {/* <a href={element?.resume?.url}>download</a> */}
           <img
             src={element.resume.url}
             alt="resume"
-            onClick={() => openModal(element.resume.url)}
+            onClick={()=>downloadImage(element)}
+
+
+            
           />
         </div>
       </div>
