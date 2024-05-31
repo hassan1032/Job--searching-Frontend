@@ -196,17 +196,10 @@ const EmployerCard = ({ element, openModal }) => {
           </p>
         </div>
         <div className="resume">
-
-          {/* <button onClick={()=>downloadImage(element)}>download</button> */}
-
-          {/* <a href={element?.resume?.url}>download</a> */}
           <img
             src={element.resume.url}
             alt="resume"
             onClick={()=>downloadImage(element)}
-
-
-            
           />
         </div>
       </div>

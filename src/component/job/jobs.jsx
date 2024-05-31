@@ -16,6 +16,8 @@ function jobs() {
     })
     .then((response)=>{
       setjobs(response.data)
+      
+
       })
       
     } catch (error) {
