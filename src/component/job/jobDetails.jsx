@@ -21,7 +21,7 @@ const JobDetails = () => {
     const amPM = hours >= 12 ? "PM" : "AM";
 
     hours = hours % 12;
-    hours = hours ? hours : 12; // 0 should be treated as 12
+    hours = hours ? hours : 12; 
 
     const formattedDate = `${day < 10 ? "0" : ""}${day}-${
       month < 10 ? "0" : ""
@@ -42,7 +42,7 @@ const JobDetails = () => {
       .catch((error) => {
         navigateTo("/notfound");
       });
-  }, []);
+  }, [id]);
 
   if (!isAuthorized) {
     navigateTo("/login");
