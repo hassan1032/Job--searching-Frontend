@@ -42,7 +42,7 @@ const JobDetails = () => {
       .catch((error) => {
         navigateTo("/notfound");
       });
-  }, [id]);
+  }, []);
 
   if (!isAuthorized) {
     navigateTo("/login");
@@ -54,7 +54,7 @@ const JobDetails = () => {
         <h3>Job Details</h3>
         <div className="banner">
           <p>
-            Title: <span> {job?.title}</span>
+            Title: <span> {job?.title }</span>
           </p>
           <p>
             Category: <span>{job?.category}</span>
