@@ -31,28 +31,11 @@ const Application = () => {
     formData.append("coverLetter", coverLetter);
     formData.append("resume", resume);
     formData.append("jobId", id);
-    function downloadPDF() {
-      // Replace this URL with the actual URL of the PDF file
-      var pdfUrl =
-        "https://res.cloudinary.com/dhj9mw9ph/image/upload/v1717133454/vioqnf0gala2rfttkcct.pdf";
 
-      // Create a temporary anchor element
-      var link = document.createElement("a");
-      link.href = pdfUrl;
-      link.target = "_blank"; // Open in new tab
-      link.download = "downloaded_pdf.pdf"; // File name to be downloaded
-      document.body.appendChild(link);
-
-      // Trigger the click event on the anchor element
-      link.click();
-
-      // Clean up
-      document.body.removeChild(link);
-    }
 
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/api/v1/application/post",
+        "https://job-searching-backend-1.onrender.com/api/v1/application/post",
         formData,
         {
           withCredentials: true,

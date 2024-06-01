@@ -11,7 +11,7 @@ function jobs() {
 
   useEffect(()=>{
     try {
-      axios.get('http://localhost:5000/api/v1/job/getall',{
+      axios.get('https://job-searching-backend-1.onrender.com/api/v1/job/getall',{
       withCredentials:true,
     })
     .then((response)=>{
