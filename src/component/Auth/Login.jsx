@@ -31,15 +31,16 @@ const Login = () => {
       setEmail("");
       setPassword("");
       setRole("");
+      <Navigate to={'/'}/>
       setIsAuthorized(true);
     } catch (error) {
       toast.error(error.response.data.message);
     }
   };
 
-  if(isAuthorized){
-    return <Navigate to={'/'}/>
-  }
+  // if(isAuthorized){
+  //   return 
+  // }
 
   return (
     <>
