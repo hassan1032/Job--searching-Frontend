@@ -6,7 +6,6 @@ import { FaRegUser } from "react-icons/fa";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Context } from "../../main";
-import Cookies from "js-cookie";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -19,7 +18,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "https://job-searching-backend-1.onrender.com/api/v1/user/login",
+        "http://localhost:5000/api/v1/user/login",
         { email, password, role },
         {
           headers: {
@@ -33,7 +32,6 @@ const Login = () => {
       setPassword("");
       setRole("");
       setIsAuthorized(true);
-       Cookies.set("authToken", data.authToken); 
     } catch (error) {
       toast.error(error.response.data.message);
     }
