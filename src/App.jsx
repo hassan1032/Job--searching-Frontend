@@ -20,20 +20,25 @@ import { Toaster } from "react-hot-toast";
 
 const App = () => {
   const { isAuthorized, setIsAuthorized, setUser } = useContext(Context);
-
+  if(localStorage.getItem("token")){
+    setIsAuthorized(true)
+  }
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:5000/api/v1/user/getuser",
+          "https://job-searching-backend-1.onrender.com/api/v1/user/getuser",
           {
             withCredentials: true,
+            headers : {
+              "Authorization": "Bearer " + localStorage.getItem("token")
+          }
           }
         );
         setUser(res.data.user);
         setIsAuthorized(true);
       } catch (error) {
-        setIsAuthorized(false);
+       // setIsAuthorized(false);
       }
     };
     fetchUser();

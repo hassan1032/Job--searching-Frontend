@@ -13,13 +13,17 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/v1/user/logout",
+        "https://job-searching-backend-1.onrender.com/api/v1/user/logout",
         {
           withCredentials: true,
+          headers : {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        }
         }
       );
       toast.success(response.data.message);
       setIsAuthorized(false);
+      localStorage.removeItem("token")
       navigateTo("/login");
     } catch (error) {
       toast.error(error.response.data.message), setIsAuthorized(true);

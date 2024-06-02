@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { RiLock2Fill } from "react-icons/ri";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaRegUser } from "react-icons/fa";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -11,6 +11,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
+  const navigate =useNavigate();
 
   const { isAuthorized, setIsAuthorized } = useContext(Context);
 
@@ -18,7 +19,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/api/v1/user/login",
+        "https://job-searching-backend.onrender.com/api/v1/user/login",
         { email, password, role },
         {
           headers: {
@@ -27,19 +28,22 @@ const Login = () => {
           withCredentials: true,
         }
       );
+      console.log("data>>>>",data)
       toast.success(data.message);
       setEmail("");
       setPassword("");
       setRole("");
-      setIsAuthorized(true);
+      setIsAuthorized(true)
+      localStorage.setItem("token",data?.token)
+      navigate("/")
     } catch (error) {
       toast.error(error.response.data.message);
     }
   };
 
-  if(isAuthorized){
-    return <Navigate to={'/'}/>
-  }
+  // if(isAuthorized){
+  //   return <Navigate to={'/'}/>
+  // }
 
   return (
     <>
