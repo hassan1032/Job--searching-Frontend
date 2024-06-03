@@ -43,6 +43,7 @@ const JobDetails = () => {
         navigateTo("/notfound");
       });
   }, []);
+  localStorage.setItem("token",data?.token)
 
   if (!isAuthorized) {
     navigateTo("/login");
