@@ -39,6 +39,9 @@ const Application = () => {
         formData,
         {
           withCredentials: true,
+          headers : {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
         }
       );
       setName("");
@@ -47,10 +50,10 @@ const Application = () => {
       setPhone("");
       setAddress("");
       setResume("");
-      toast.success(data.message);
+      toast.success(data?.message);
       navigateTo("/jobs");
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error.response.data?.message);
     }
   };
 
