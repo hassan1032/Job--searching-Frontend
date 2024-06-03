@@ -50,7 +50,7 @@ const Application = () => {
       setPhone("");
       setAddress("");
       setResume("");
-      toast.success(data.message);
+      toast.success(data?.message);
       navigateTo("/jobs");
     } catch (error) {
       toast.error(error.response?.data?.message );
