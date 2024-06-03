@@ -35,6 +35,9 @@ const JobDetails = () => {
     axios
       .get(`https://job-searching-backend.onrender.com/api/v1/job/${id}`, {
         withCredentials: true,
+        headers : {
+          "Authorization": "Bearer " + localStorage.getItem("token")
+      }
       })
       .then((res) => {
         setJob(res.data.jobs);
@@ -43,7 +46,7 @@ const JobDetails = () => {
         navigateTo("/notfound");
       });
   }, []);
-  localStorage.setItem("token",data?.token)
+  localStorage.getItem("token")
 
   if (!isAuthorized) {
     navigateTo("/login");

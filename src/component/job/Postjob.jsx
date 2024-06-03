@@ -272,9 +272,9 @@ const PostJob = () => {
             },
         {
           withCredentials: true,
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers : {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
         }
       )
       .then((res) => {
@@ -286,6 +286,7 @@ const PostJob = () => {
   };
 
   const navigateTo = useNavigate();
+  localStorage.getItem("token")
   if (!isAuthorized || (user && user.role !== "Employer")) {
     navigateTo("/");
   }
