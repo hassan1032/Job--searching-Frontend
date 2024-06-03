@@ -39,9 +39,6 @@ const Application = () => {
         formData,
         {
           withCredentials: true,
-          headers : {
-            "Authorization": "Bearer " + localStorage.getItem("token")
-        }
         }
       );
       setName("");
