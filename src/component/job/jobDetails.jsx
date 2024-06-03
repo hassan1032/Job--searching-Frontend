@@ -46,7 +46,7 @@ const JobDetails = () => {
         navigateTo("/notfound");
       });
   }, []);
-  localStorage.getItem("token")
+
 
   if (!isAuthorized) {
     navigateTo("/login");
