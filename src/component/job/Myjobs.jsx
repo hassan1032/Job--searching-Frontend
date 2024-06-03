@@ -12,6 +12,9 @@ const MyJobs = () => {
   const { isAuthorized, user } = useContext(Context);
 
   const navigateTo = useNavigate();
+
+  const token= localStorage.getItem("token");
+  console.log(token);
   //Fetching all jobs
   useEffect(() => {
     const fetchJobs = async () => {
