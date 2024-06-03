@@ -20,6 +20,10 @@ const MyApplications = () => {
         axios
           .get("https://job-searching-backend.onrender.com/api/v1/application/employer/getall", {
             withCredentials: true,
+            headers : {
+              "Authorization": "Bearer " + localStorage.getItem("token")
+          }
+            
           })
           .then((res) => {
             setApplications(res.data.applications);
@@ -28,6 +32,9 @@ const MyApplications = () => {
         axios
           .get("https://job-searching-backend.onrender.com/api/v1/application/jobseeker/getall", {
             withCredentials: true,
+            headers : {
+              "Authorization": "Bearer " + localStorage.getItem("token")
+          }
           })
           .then((res) => {
             setApplications(res.data.applications);
@@ -47,6 +54,9 @@ const MyApplications = () => {
       axios
         .delete(`https://job-searching-backend.onrender.com/api/v1/application/delete/${id}`, {
           withCredentials: true,
+          headers : {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        }
         })
         .then((res) => {
           toast.success(res.data.message);
