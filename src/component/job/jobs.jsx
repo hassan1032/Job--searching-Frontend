@@ -13,6 +13,9 @@ function jobs() {
     try {
       axios.get('https://job-searching-backend.onrender.com/api/v1/job/getall',{
       withCredentials:true,
+      headers : {
+        "Authorization": "Bearer " + localStorage.getItem("token")
+    }
     })
     .then((response)=>{
       setjobs(response.data)

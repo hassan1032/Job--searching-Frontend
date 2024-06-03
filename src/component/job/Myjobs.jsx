@@ -18,7 +18,11 @@ const MyJobs = () => {
       try {
         const { data } = await axios.get(
           "https://job-searching-backend.onrender.com/api/v1/job/getmyjobs",
-          { withCredentials: true }
+          { withCredentials: true,
+            headers : {
+              "Authorization": "Bearer " + localStorage.getItem("token")
+          },
+           }
         );
         setMyJobs(data.myJobs);
       } catch (error) {
@@ -49,6 +53,9 @@ const MyJobs = () => {
     await axios
       .put(`https://job-searching-backend.onrender.com/api/v1/job/update/${jobId}`, updatedJob, {
         withCredentials: true,
+        headers : {
+          "Authorization": "Bearer " + localStorage.getItem("token")
+      }
       })
       .then((res) => {
         toast.success(res.data.message);
@@ -64,6 +71,9 @@ const MyJobs = () => {
     await axios
       .delete(`https://job-searching-backend.onrender.com/api/v1/job/delete/${jobId}`, {
         withCredentials: true,
+        headers : {
+          "Authorization": "Bearer " + localStorage.getItem("token")
+      }
       })
       .then((res) => {
         toast.success(res.data.message);
